@@ -13,9 +13,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>{t("placeholder.login")}</div>
-        <div>{t("placeholder.comment")}</div>
-        <div>{t("cancel")}</div>
+        <div>{t("account.account_information")}</div>
+        <div>{t("account.number_of_stocks")}</div>
+        <div>{t("account.current_password")}</div>
+
         <select
           value={langOption}
           onChange={(e) => {
@@ -24,6 +25,8 @@ function App() {
         >
           <option value="ko">한국어</option>
           <option value="en">english</option>
+          <option value="ja">Japanese</option>
+          <option value="es">Espanol</option>
         </select>
       </header>
     </div>
