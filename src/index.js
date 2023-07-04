@@ -1,14 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import "./i18n";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { router } from "./routes.js";
+import { AuthStateProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <AuthStateProvider>
+        <RouterProvider router={router}>
+          <ReactQueryDevtools initialIsOpen={true} />
+        </RouterProvider>
+      </AuthStateProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

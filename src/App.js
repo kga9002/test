@@ -1,34 +1,22 @@
-import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { NavLink, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import Header from "./components/header";
+import { client } from "./query/auth";
 
 function App() {
-  const { t, i18n } = useTranslation();
-  const [langOption, setLangOption] = useState(i18n.language);
-
-  useEffect(() => {
-    i18n.changeLanguage(langOption);
-    localStorage.setItem("lng", langOption);
-  }, [langOption]);
+  function logout() {
+    localStorage.removeItem("Auth");
+    client.defaults.headers.common["Authorization"] = "";
+    window.location.replace("/");
+  }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div>{t("account.account_information")}</div>
-        <div>{t("account.number_of_stocks")}</div>
-        <div>{t("account.current_password")}</div>
-
-        <select
-          value={langOption}
-          onChange={(e) => {
-            setLangOption(e.target.value);
-          }}
-        >
-          <option value="ko">한국어</option>
-          <option value="en">english</option>
-          <option value="ja">Japanese</option>
-          <option value="es">Espanol</option>
-        </select>
-      </header>
+      <Header />
+      <div>
+        <NavLink to="/">Home</NavLink> | <NavLink to="/test">Test</NavLink> |
+        &nbsp;<button onClick={logout}>Logout</button>
+      </div>
+      <Outlet />
     </div>
   );
 }
