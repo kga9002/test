@@ -1,22 +1,19 @@
-import { NavLink, Navigate, Outlet, Route, Routes } from "react-router-dom";
-import Header from "./components/header";
-import { client } from "./query/auth";
+import { Outlet } from "react-router-dom";
+import Header from "./components/Share/header";
+import Nav from "./components/Share/nav";
 
 function App() {
-  function logout() {
-    localStorage.removeItem("Auth");
-    client.defaults.headers.common["Authorization"] = "";
-    window.location.replace("/");
-  }
-
   return (
-    <div className="App">
+    <div className="h-screen overflow-hidden">
       <Header />
-      <div>
-        <NavLink to="/">Home</NavLink> | <NavLink to="/test">Test</NavLink> |
-        &nbsp;<button onClick={logout}>Logout</button>
+      <div className="flex">
+        <div className="float-left h-screen w-fit">
+          <Nav />
+        </div>
+        <div className="float-left h-screen p-5 flex-auto overflow-y-auto">
+          <Outlet />
+        </div>
       </div>
-      <Outlet />
     </div>
   );
 }

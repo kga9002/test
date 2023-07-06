@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { client, useFetchUser } from "../query/auth";
+import { client, useFetchUser } from "../../query/auth";
 
 export default function ProtectedRoute({ children }) {
   const token = localStorage.getItem("Auth");

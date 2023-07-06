@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App.js";
-import Login from "./components/login.jsx";
-import Main from "./components/main.jsx";
-import ErrorPage from "./components/errorPage.jsx";
-import Register from "./components/register.jsx";
-import Auth from "./components/auth.jsx";
-import Test from "./components/test.jsx";
-import ProtectedRoute from "./components/protectedRoute.jsx";
+import Login from "./components/Auth/login.jsx";
+import Main from "./components/Main/main.jsx";
+import ErrorPage from "./components/Share/errorPage.jsx";
+import Register from "./components/Auth/register.jsx";
+import Auth from "./components/Auth/auth.jsx";
+import Test from "./components/Main/test.jsx";
+import TestOne from "./components/Main/testone.jsx";
+import TestTwo from "./components/Main/testtwo.jsx";
+import ProtectedRoute from "./components/Main/protectedRoute.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +25,14 @@ export const router = createBrowserRouter([
         index: true,
         element: <Main />,
       },
-      { path: "test", element: <Test /> },
+      {
+        path: "test",
+        element: <Test />,
+        children: [
+          { index: true, element: <TestOne /> },
+          { path: "testtwo", element: <TestTwo /> },
+        ],
+      },
     ],
   },
   {
