@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useFetchLogin } from "../../query/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -87,7 +89,10 @@ export default function Login() {
           </form>
           <div className="py-5">
             <div className="text-center whitespace-nowrap">
-              <button className="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+              <button
+                onClick={() => navigate("/auth/register")}
+                className="transition duration-200 mx-5 px-5 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset"
+              >
                 <span className="inline-block ml-1">Register</span>
               </button>
             </div>
